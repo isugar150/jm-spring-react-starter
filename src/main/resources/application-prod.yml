@@ -1,0 +1,17 @@
+server:
+  port: 8081
+logging:
+  config: classpath:logback-spring-prod.xml
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+  r2dbc:
+    url: r2dbc:postgresql://10.0.0.99:5432/starter?schema=public
+    username: postgres
+    password: ""
+    pool:
+      initial-size: 10
+      max-size: 30

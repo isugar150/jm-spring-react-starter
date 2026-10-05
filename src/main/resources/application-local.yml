@@ -1,0 +1,18 @@
+server:
+  port: 8080
+logging:
+  config: classpath:logback-spring-local.xml
+
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  r2dbc:
+    url: r2dbc:postgresql://localhost:15432/starter?schema=public
+    username: postgres
+    password: ""
+    pool:
+      initial-size: 10
+      max-size: 50

@@ -1,0 +1,321 @@
+@import "tailwindcss/base";
+@import "@radix-ui/themes/styles.css";
+
+@tailwind components;
+@tailwind utilities;
+
+/* 100 Thin */
+@font-face {
+  font-family: "Noto Sans KR";
+  src: url("/fonts/NotoSansKR-Thin.woff2") format("woff2");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 200 ExtraLight */
+@font-face {
+  font-family: "Noto Sans KR";
+  src: url("/fonts/NotoSansKR-ExtraLight.woff2") format("woff2");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 300 Light */
+@font-face {
+  font-family: "Noto Sans KR";
+  src: url("/fonts/NotoSansKR-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 400 Regular */
+@font-face {
+  font-family: "Noto Sans KR";
+  src: url("/fonts/NotoSansKR-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 500 Medium */
+@font-face {
+  font-family: "Noto Sans KR";
+  src: url("/fonts/NotoSansKR-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 600 SemiBold */
+@font-face {
+  font-family: "Noto Sans KR";
+  src: url("/fonts/NotoSansKR-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 700 Bold */
+@font-face {
+  font-family: "Noto Sans KR";
+  src: url("/fonts/NotoSansKR-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 800 ExtraBold */
+@font-face {
+  font-family: "Noto Sans KR";
+  src: url("/fonts/NotoSansKR-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* 900 Black */
+@font-face {
+  font-family: "Noto Sans KR";
+  src: url("/fonts/NotoSansKR-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+    font-family: "Noto Sans KR", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    user-select: none;
+}
+
+body {
+  margin: 0;
+  width: 100%;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+}
+
+:root {
+  --toast-bg: var(--gray-1);
+  --toast-border: var(--gray-6);
+  --toast-text: var(--gray-12);
+  --toast-muted: var(--gray-11);
+  --toast-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+html.dark {
+  --toast-bg: var(--gray-2);
+  --toast-border: var(--gray-7);
+  --toast-text: var(--gray-12);
+  --toast-muted: var(--gray-11);
+  --toast-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+.ToastViewport {
+  position: fixed;
+  z-index: 1200;
+  display: flex;
+  width: 360px;
+  max-width: calc(100vw - 48px);
+  flex-direction: column;
+  gap: 12px;
+  margin: 0;
+  list-style: none;
+  outline: none;
+}
+
+.ToastViewport[data-position="top-left"] {
+  top: 24px;
+  left: 24px;
+}
+
+.ToastViewport[data-position="top-right"] {
+  top: 24px;
+  right: 24px;
+}
+
+.ToastViewport[data-position="bottom-left"] {
+  bottom: 24px;
+  left: 24px;
+}
+
+.ToastViewport[data-position="bottom-right"] {
+  bottom: 24px;
+  right: 24px;
+}
+
+.ToastRoot {
+  --toast-accent: var(--gray-9);
+  --toast-accent-soft: var(--gray-3);
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 8px 12px;
+  align-items: start;
+  background-color: var(--toast-bg);
+  border: 1px solid var(--toast-border);
+  border-left: 4px solid var(--toast-accent);
+  border-radius: 12px;
+  padding: 14px 16px 12px;
+  box-shadow: var(--toast-shadow);
+  overflow: hidden;
+}
+
+.ToastRoot[data-variant="success"] {
+  --toast-accent: var(--green-9);
+  --toast-accent-soft: var(--green-3);
+}
+
+.ToastRoot[data-variant="warning"] {
+  --toast-accent: var(--amber-9);
+  --toast-accent-soft: var(--amber-3);
+}
+
+.ToastRoot[data-variant="error"] {
+  --toast-accent: var(--red-9);
+  --toast-accent-soft: var(--red-3);
+}
+
+.ToastIcon {
+  width: 28px;
+  height: 28px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--toast-accent);
+  background-color: var(--toast-accent-soft);
+  margin-top: 2px;
+}
+
+.ToastContent {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ToastTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--toast-text);
+}
+
+.ToastDescription {
+  font-size: 13px;
+  color: var(--toast-muted);
+  line-height: 1.4;
+}
+
+.ToastClose {
+  border: none;
+  background: transparent;
+  color: var(--toast-muted);
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ToastClose:hover {
+  background: var(--gray-3);
+  color: var(--toast-text);
+}
+
+.ToastAction {
+  grid-column: 2 / -1;
+  justify-self: end;
+}
+
+.ToastActionButton {
+  border: none;
+  background: var(--gray-3);
+  color: var(--toast-text);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.ToastActionButton:hover {
+  background: var(--gray-4);
+}
+
+.ToastProgress {
+  grid-column: 1 / -1;
+  height: 2px;
+  width: 100%;
+  border-radius: 0;
+  background: var(--toast-accent);
+  transform-origin: left center;
+  animation-name: toast-progress;
+  animation-timing-function: linear;
+}
+
+@keyframes toast-slide-in {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes toast-swipe-out {
+  from {
+    transform: translateX(var(--radix-toast-swipe-end-x));
+  }
+  to {
+    transform: translateX(-120%);
+  }
+}
+
+@keyframes toast-progress {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0);
+  }
+}
+
+.ToastRoot[data-state="open"] {
+  animation: toast-slide-in 200ms ease-out;
+}
+
+.ToastRoot[data-state="closed"] {
+  animation: toast-hide 150ms ease-in;
+}
+
+.ToastRoot[data-swipe="move"] {
+  transform: translateX(var(--radix-toast-swipe-move-x));
+}
+
+.ToastRoot[data-swipe="cancel"] {
+  transform: translateX(0);
+  transition: transform 200ms ease-out;
+}
+
+.ToastRoot[data-swipe="end"] {
+  animation: toast-swipe-out 150ms ease-out;
+}

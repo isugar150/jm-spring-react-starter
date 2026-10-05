@@ -1,0 +1,21 @@
+spring:
+  profiles:
+    default: local
+  application:
+    name: starter
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=500,expireAfterAccess=600s,recordStats
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: cache,health
+
+starter:
+  jwt:
+    secret: "Zm9yLWRldi1vbmx5LWNoYW5nZS10aGlzLTY0LWJ5dGUta2V5LWJhc2U2NC1jb25maWctdG9rZW4xMjM0NTY3ODkwMTIzNDU2Nzg5MA=="
+    access-token-validity-in-seconds: 5
+    refresh-token-validity-in-seconds: 30
